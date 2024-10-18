@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Kennel Hotel Price Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(135deg, #3e3295, #3c0064);
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            text-align: center;
+        }
+        h2 {
+            color: #004d40;
+            margin-bottom: 20px;
+        }
+        label {
+            color: #00796b;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #004d40;
+            border-radius: 4px;
+        }
+        button {
+            padding: 12px 20px;
+            background-color: #00796b;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+        h3 {
+            color: #004d40;
+            margin-top: 20px;
+        }
+        span#result {
+            color: #2fd360;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Dog Hotel Price</h2>
+
+    <label for="dogSize">Select the size of your dog:</label>
+    <select id="dogSize">
+        <option value="small">Small ($30/day)</option>
+        <option value="large">Large ($32/day)</option>
+    </select>
+
+    <label for="days">Enter the number of days:</label>
+    <input type="number" id="days" min="1" value="1">
+
+    <button onclick="calculatePrice()">Calculate Total Cost</button>
+
+    <h3>Total Cost: <span id="result">$0.00</span></h3>
+</div>
+
+<script>
+    function calculatePrice() {
+       
+        let dogSize = document.getElementById('dogSize').value;
+        let days = parseInt(document.getElementById('days').value);
+
+        
+        let dailyRate = 0;
+        if (dogSize === "small") {
+            dailyRate = 30;
+        } else if (dogSize === "large") {
+            dailyRate = 32;
+        }
+
+        let subtotal = dailyRate * days;
+        let taxRate = 0.47;
+        let totalCost = subtotal * (1 + taxRate);
+
+     
+        document.getElementById('result').textContent = `$${totalCost.toFixed(2)}`;
+    }
+</script>
+
+</body>
+</html>
